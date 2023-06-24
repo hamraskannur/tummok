@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { logout } from '../redux/authSlice'
+import { logout } from '../../redux/authSlice'
 import { useDispatch } from 'react-redux';
 
 function Header({user}) {
@@ -22,12 +22,7 @@ function Header({user}) {
             </h1>
           </div>
           <div className="menu flex gap-8 pr-10">
-            <li
-              onClick={() => navigate("/profile")}
-              className="menuList text-[#6f6f6f] hover:text-blueColor cursor-pointer" 
-            >
-              Profile
-            </li>
+          
             <button
               className="bg-[#6f6f6f] text-white px-4 py-1 rounded-lg hover:bg-white duration-300 border border-[#6f6f6f] hover:text-[#6f6f6f]"
               onClick={handleLogout}
