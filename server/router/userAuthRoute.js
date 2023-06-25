@@ -13,10 +13,7 @@ const router = Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/google", passport.authenticate("google",{ scope: ['profile', 'email'] }));
-router.get(
-  "/google/callback",
-  passport.authenticate("google", {session:false}),googleLogin
-);
+router.get("/google/callback",passport.authenticate("google", {session:false}),googleLogin);
 router.post("/authenticate", authenticateUser, Auth);
 
 export default router;
