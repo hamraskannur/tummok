@@ -20,7 +20,6 @@ function processFile(filename) {
       });
     });
   }
-
  async function eventLoop() {
   try {
     const files = ["./files/file1.txt", "./files/file2.txt"];

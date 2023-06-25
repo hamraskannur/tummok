@@ -20,7 +20,7 @@ export async function registerUser(req, res) {
         emailAddress: emailAddress,
         password: hashedPassword,
         phoneNumber: phoneNumber,
-        city:"64972aa33d1974b584d27cba"
+        city: "64972aa33d1974b584d27cba",
       });
       const validationError = newUser.validateSync();
       if (validationError) {
@@ -42,34 +42,12 @@ export async function registerUser(req, res) {
 
 export async function googleLogin(req, res) {
   try {
-    const { email, family_name, given_name } = req.body;
-    const user = await userModel.findOne({ emailAddress: email });
-    if (user) {
-      const token =await generateToken(user._id);
-      res
-        .status(200)
-        .json({ token, message: "Login successful", status: true });
-    } else {
-      const newUser = new userModel({
-        userName: given_name + family_name,
-        emailAddress: email,
-        city:"64972aa33d1974b584d27cba"
-      });
-      const validationError = newUser.validateSync();
-
-      if (validationError) {
-        throw new Error(validationError.message);
-      }
-
-      await newUser.save();
-      console.log(newUser,5656566);
-      const token =await generateToken(newUser._id);
-      res
-        .status(200)
-        .json({ token, message: "Login successful", status: true });
-    }
+    console.log(req.user);
+    console.log("pplplplplpl");
+    const token = await generateToken(req.user._id);
+    console.log(process.env.FRONTEND_URL);
+    res.redirect(`http://localhost:3000/OAuthRedirecting?token=${token}`);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: "Failed to login" });
   }
 }
@@ -85,7 +63,7 @@ export async function loginUser(req, res) {
     if (!isPasswordValid) {
       return res.json({ message: "Invalid password", status: false });
     }
-    const token =await generateToken(user._id);
+    const token = await generateToken(user._id);
     res.status(200).json({ token, message: "Login successful", status: true });
   } catch (error) {
     res.status(500).json({ error: "Failed to login" });

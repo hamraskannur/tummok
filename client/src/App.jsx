@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import ErrorPage from "./pages/404page"
+import Redirect from './pages/Redirect';
 
 function App() {
   return (
@@ -17,9 +18,9 @@ function App() {
           <Route path='/' element={<UserPublicRoute><Home/></UserPublicRoute>} />
           <Route path='/login' element={<UserProtectRouter><Login /></UserProtectRouter>} />
           <Route path='/register' element={<UserProtectRouter><Signup /></UserProtectRouter>} />
+          <Route  path= '/OAuthRedirecting'  element={ <Redirect/>} />
           <Route path='/*' element={<ErrorPage />} />
-
-        </Routes>
+    </Routes>
       </BrowserRouter>
     </>
   );

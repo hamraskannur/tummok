@@ -1,8 +1,9 @@
 import express from 'express'
 import cors from 'cors'
+import session from 'express-session';
+
 import connect from './config/connection.js';
 import passport from './config/passport.js';
-
 import userRoute from './router/userAuthRoute.js'
 import cityRoute from "./router/cityRoute.js"
 
@@ -19,9 +20,16 @@ app.use(
 );
 
 
-
+app.use(
+    session({
+      secret: 'your-secret-key',
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
 app.use(express.json());
 app.use(passport.initialize());
+
 app.use('/api', userRoute);
 app.use('/city', cityRoute);
 

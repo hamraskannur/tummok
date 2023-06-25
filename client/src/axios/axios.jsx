@@ -31,12 +31,3 @@ export async function Auth() {
 };
 
 
-export async function googleWithLogin(credentials) {
-    try {
-        const { data } = await Api.post("/googleLogin",credentials, { withCredentials: true })
-        return data
-    } catch (error) {
-        console.log(error);
-        return { error: 'Data Fetch error' }
-    }
-};
