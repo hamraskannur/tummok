@@ -68,5 +68,6 @@ export async function loginUser(req, res) {
 }
 
 export function Auth(req, res) {
+  
   res.json({ message: "yes", status: true });
 }

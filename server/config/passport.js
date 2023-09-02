@@ -18,7 +18,6 @@ passport.use(
         return done(null, false);
       }
     } catch (err) {
-      console.log(err);
       return done(err, false);
     }
   })
@@ -27,10 +26,9 @@ passport.use(
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        "502951516118-qta7aqug0ervhlepaour32a5bv7nmoqn.apps.googleusercontent.com",
-      clientSecret: "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",
-      callbackURL: "/api/google/callback",
+      clientID:'',
+      clientSecret: '',
+      callbackURL: '',
     },
     async (accessToken, refreshToken, profile, done) => {
       const { name,email } = profile._json;
