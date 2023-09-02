@@ -42,10 +42,7 @@ export async function registerUser(req, res) {
 
 export async function googleLogin(req, res) {
   try {
-    console.log(req.user);
-    console.log("pplplplplpl");
     const token = await generateToken(req.user._id);
-    console.log(process.env.FRONTEND_URL);
     res.redirect(`http://localhost:3000/OAuthRedirecting?token=${token}`);
   } catch (error) {
     res.status(500).json({ error: "Failed to login" });
@@ -71,6 +68,5 @@ export async function loginUser(req, res) {
 }
 
 export function Auth(req, res) {
-  console.log(req.user);
   res.json({ message: "yes", status: true });
 }

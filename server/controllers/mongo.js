@@ -3,7 +3,6 @@ import {cityModel} from "../model/cityModel.js"
 
 export const createCity =async (req, res, next) => {
     try {
-        console.log("plplpl");
         const city = new cityModel({
             name: req.body.city,
             population: 9000000,
