@@ -26,9 +26,7 @@ passport.use(
 passport.use(
   new GoogleStrategy(
     {
-      clientID:'',
-      clientSecret: '',
-      callbackURL: '',
+     
     },
     async (accessToken, refreshToken, profile, done) => {
       const { name,email } = profile._json;
@@ -41,11 +39,9 @@ passport.use(
           city: "64972aa33d1974b584d27cba",
         });
         const validationError = newUser.validateSync();
-  
         if (validationError) {
           throw new Error(validationError.message);
         }
-  
         user=await newUser.save();
       }
        done(null, user);
